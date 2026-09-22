@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { Activity, Network, ShieldCheck, ServerCrash, Play, AlertCircle, Brain, LayoutDashboard, Info, ArrowRight } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
 function App() {
   const [backendStatus, setBackendStatus] = useState('Checking...');
   const [flows, setFlows] = useState([]);
@@ -20,7 +22,7 @@ function App() {
   useEffect(() => {
     const checkBackendHealth = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/health');
+        const response = await fetch(`${API_BASE_URL}/api/health`);
         if (response.ok) {
           setBackendStatus('Connected');
         } else {
@@ -39,7 +41,7 @@ function App() {
     setPredictions(null);
     setSimulationResults(null);
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/traffic/generate', {
+      const response = await fetch(`${API_BASE_URL}/api/traffic/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ count: parseInt(flowCount) })
@@ -62,13 +64,13 @@ function App() {
     setSimulationResults(null);
     try {
       if (!mlMetrics) {
-        const metricsRes = await fetch('http://127.0.0.1:8000/api/ml/metrics');
+        const metricsRes = await fetch(`${API_BASE_URL}/api/ml/metrics`);
         if (metricsRes.ok) {
           setMlMetrics(await metricsRes.json());
         }
       }
       
-      const response = await fetch('http://127.0.0.1:8000/api/classify', {
+      const response = await fetch(`${API_BASE_URL}/api/classify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ flows })
@@ -106,7 +108,7 @@ function App() {
         };
       });
 
-      const response = await fetch('http://127.0.0.1:8000/api/metrics/compare', {
+      const response = await fetch(`${API_BASE_URL}/api/metrics/compare`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
