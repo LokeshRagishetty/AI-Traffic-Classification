@@ -604,7 +604,7 @@ function App() {
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
                       <XAxis dataKey="name" tick={{fontSize: 12, fontWeight: 500}} />
                       <YAxis tick={{fontSize: 12}} />
-                      <Tooltip cursor={{fill: '#f3f4f6'}} />
+                      <RechartsTooltip cursor={{fill: '#f3f4f6'}} />
                       <Legend wrapperStyle={{fontSize: '12px'}} />
                       <Bar dataKey="FIFO" fill="#9ca3af" radius={[2,2,0,0]} />
                       <Bar dataKey="AI-Priority" fill="#0d9488" radius={[2,2,0,0]} />
@@ -625,7 +625,7 @@ function App() {
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
                       <XAxis dataKey="name" tick={{fontSize: 12, fontWeight: 500}} />
                       <YAxis tick={{fontSize: 12}} />
-                      <Tooltip cursor={{fill: '#f3f4f6'}} />
+                      <RechartsTooltip cursor={{fill: '#f3f4f6'}} />
                       <Legend wrapperStyle={{fontSize: '12px'}} />
                       <Bar dataKey="FIFO" fill="#9ca3af" radius={[2,2,0,0]} />
                       <Bar dataKey="AI-Priority" fill="#0d9488" radius={[2,2,0,0]} />
